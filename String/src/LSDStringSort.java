@@ -14,10 +14,9 @@ public class LSDStringSort {
         for (int d = w-1; d>=0; d--){
             int [] count = new int[radix];
             int finalD = d;
-            String[] finalStrings1 = strings;
-            IntStream.range(0,n).forEach(i->count[finalStrings1[i].charAt(finalD)+1]++);
-            Arrays.parallelPrefix(count, Integer::sum);
             String[] finalStrings = strings;
+            IntStream.range(0,n).forEach(i->count[finalStrings[i].charAt(finalD)+1]++);
+            Arrays.parallelPrefix(count, Integer::sum);
             IntStream.range(0, n).forEach(i -> aux[count[finalStrings[i].charAt(finalD)]++] = finalStrings[i]);
             strings=Arrays.copyOf(aux, aux.length);
         }
